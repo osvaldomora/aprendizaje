@@ -18,6 +18,9 @@ public class ObjectCreation{
 
     public void setName(String name){
         this.name=name;
+        ObjectCreation ob= new ObjectCreation();
+        ob.surname="d0";
+        ob.getSurname();
     }
 
     public void setSurname(String surname){

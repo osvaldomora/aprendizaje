@@ -1,23 +1,29 @@
 package osvaldo.morales.company.demo.compatationtipes;
 
-//record Person17(String name, int age) {}
+//record Person17(String name, int age, email) {}
 
+import java.util.List;
 import java.util.Objects;
 
 public final class Person17 {
     private final String name;
-    private final int age;
+    private final Integer age;
+    private final List<String> emails;
 
-    public Person17(String name, int age) {
+    public Person17(String name, Integer age,List<String> email) {
         this.name = name;
         this.age = age;
+        this.emails=email;
     }
 
     public String name() {
         return name;
     }
+    public List<String> email() {
+        return emails;
+    }
 
-    public int age() {
+    public Integer age() {
         return age;
     }
 
