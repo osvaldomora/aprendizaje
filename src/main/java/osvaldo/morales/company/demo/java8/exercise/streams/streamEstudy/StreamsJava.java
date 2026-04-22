@@ -1,4 +1,4 @@
-package osvaldo.morales.company.demo.java8.exercise;
+package osvaldo.morales.company.demo.java8.exercise.streams.streamEstudy;
 
 import osvaldo.morales.company.demo.java8.exercise.comparable.Persona;
 

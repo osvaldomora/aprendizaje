@@ -1,46 +1,16 @@
-package osvaldo.morales.company.demo.java8.exercise.streams;
+package osvaldo.morales.company.demo.java8.exercise.streams.collectors;
 
 
 import java.util.*;
 import java.util.stream.*;
 
-class Employee1 {
-    int id;
-    String name;
-    int age;
-    double salary;
 
-    public Employee1(int id, String name, int age, double salary) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.salary = salary;
-    }
-
-    public int getId() { return id; }
-    public String getName() { return name; }
-    public int getAge() { return age; }
-    public double getSalary() { return salary; }
-
-    public String toString() {
-        return name + "(" + age + ", $" + salary + ")";
-    }
-
-    public static List<Employee1> empleados() {
-        return List.of(
-                new Employee1(1, "Ana", 25, 3000),
-                new Employee1(2, "Luis", 30, 4000),
-                new Employee1(3, "Pedro", 30, 5000),
-                new Employee1(4, "Maria", 22, 3500)
-        );
-    }
-}
 
 public class CollectorsInterviewGuide {
 
     public static void main(String[] args) {
 
-        List<Employee1> employees = Employee1.empleados();
+        List<Employee> employees = Employee.empleados();
 
         System.out.println("=== ORIGINAL DATA ===");
         employees.forEach(e -> System.out.println(e));
@@ -49,6 +19,9 @@ public class CollectorsInterviewGuide {
         // 1. groupingBy + counting
         // =========================================
         System.out.println("\n1. Count employees by age");
+
+
+
 
         Map<Integer, Long> countByAge = employees.stream()
                 .collect(Collectors.groupingBy(
@@ -66,8 +39,9 @@ public class CollectorsInterviewGuide {
         // 2. Max salary employee
         // =========================================
         System.out.println("\n2. Employee with max salary");
+        System.out.println(employees.stream().map(emp->emp.salary).mapToDouble(sal->sal).max());
 
-        Optional<Employee1> maxSalary = employees.stream()
+        Optional<Employee> maxSalary = employees.stream()
                 .max((e1, e2) -> Double.compare(e1.getSalary(), e2.getSalary()));
 
         System.out.println(maxSalary.get());
@@ -104,7 +78,7 @@ public class CollectorsInterviewGuide {
                         Collectors.collectingAndThen(
                                 Collectors.maxBy((e1, e2) ->
                                         Double.compare(e1.getSalary(), e2.getSalary())),
-                                opt -> opt.get().getName()
+                                opt -> opt.get().getLastName()
                         )
                 ));
 
@@ -122,7 +96,7 @@ public class CollectorsInterviewGuide {
         System.out.println("\n5. Names in uppercase joined");
 
         String names = employees.stream()
-                .map(e -> e.getName().toUpperCase())
+                .map(e -> e.getLastName().toUpperCase())
                 .collect(Collectors.joining(", "));
 
         System.out.println(names);
@@ -159,7 +133,7 @@ public class CollectorsInterviewGuide {
         Map<Boolean, List<String>> partition = employees.stream()
                 .collect(Collectors.partitioningBy(
                         e -> e.getSalary() > 3500,
-                        Collectors.mapping(e -> e.getName(), Collectors.toList())
+                        Collectors.mapping(e -> e.getLastName(), Collectors.toList())
                 ));
 
         System.out.println(partition);
@@ -192,7 +166,7 @@ public class CollectorsInterviewGuide {
         System.out.println("\n9. Longest name");
 
         Optional<String> longestName = employees.stream()
-                .map(e -> e.getName())
+                .map(e -> e.getLastName())
                 .max((s1, s2) -> Integer.compare(s1.length(), s2.length()));
 
         System.out.println(longestName.get());
@@ -206,10 +180,10 @@ public class CollectorsInterviewGuide {
         // =========================================
         System.out.println("\n10. grouping vs partitioning");
 
-        Map<Integer, List<Employee1>> grouping = employees.stream()
+        Map<Integer, List<Employee>> grouping = employees.stream()
                 .collect(Collectors.groupingBy(e -> e.getAge()));
 
-        Map<Boolean, List<Employee1>> partitioning = employees.stream()
+        Map<Boolean, List<Employee>> partitioning = employees.stream()
                 .collect(Collectors.partitioningBy(e -> e.getAge() > 25));
 
         System.out.println("Grouping (many keys): " + grouping);

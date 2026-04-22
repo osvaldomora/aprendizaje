@@ -1,4 +1,4 @@
-package osvaldo.morales.company.demo.java8.exercise.streams.streamEImp;
+package osvaldo.morales.company.demo.java8.exercise.streams.streamEstudy;
 
 
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public class StreamsLevelsExplication {
 
 
         // ==============================
-        // 2. STREAM BASE
+        // 2. STREAM BASE List<List<Integer>> lists
         // ==============================
         Stream<List<Integer>> s1 = lists.stream();
 
@@ -40,7 +40,7 @@ public class StreamsLevelsExplication {
 
 
         // ==============================
-        // 3. MAP IDENTIDAD
+        // 3. MAP IDENTIDAD List<List<Integer>> lists
         // ==============================
         Stream<List<Integer>> s2 = lists.stream()
                 .map(x -> x);
@@ -50,7 +50,7 @@ public class StreamsLevelsExplication {
 
 
         // ==============================
-        // 4. TU DUDA PRINCIPAL 🔥
+        // 4. TU DUDA PRINCIPAL 🔥 List<List<Integer>> lists
         // ==============================
         Stream<Stream<Integer>> s3 = lists.stream()
                 .map(x -> x.stream());
@@ -70,7 +70,7 @@ public class StreamsLevelsExplication {
 
 
         // ==============================
-        // 5. POR QUÉ NO ES LO QUE PENSABAS
+        // 5. POR QUÉ NO ES LO QUE PENSABAS List<List<Integer>> lists
         // ==============================
         Stream<Stream<List<Integer>>> s4 = lists.stream()
                 .map(x -> Stream.of(x));
@@ -83,16 +83,17 @@ public class StreamsLevelsExplication {
         // Stream<Stream<List<Integer>>>
 
 /*
-x.stream() → "saca lo que hay dentro"
-Stream.of(x) → "envuelve x como un elemento"
+
+
  */
         // ==============================
-        // 6. FLATMAP (APLANAR)
+        // 6. FLATMAP (APLANAR)  List<List<Integer>> lists
         // ==============================
         Stream<Integer> s5 = lists.stream()
                 .flatMap(x -> x.stream());
 
-        // Aplana:
+        // Aplana:podemos velo como quita un nivel de stream:flatMap transforms each element into a stream and then flattens those streams into a single stream, removing one level of nesting
+        //por definicion la operacion que se tenga dentro de flatMap debe retornar un stream mientra que map retorna un  generalmente objeto
         // Stream<List<Integer>> → Stream<Integer>
 
 
@@ -117,7 +118,7 @@ Stream.of(x) → "envuelve x como un elemento"
 
 
         // ==============================
-        // 8. YA NO PUEDES APLANAR MÁS
+        // 8. YA NO PUEDES APLANAR MÁS List<List<Integer>> lists
         // ==============================
         Stream<Integer> flat = lists.stream()
                 .flatMap(x -> x.stream());
@@ -136,15 +137,18 @@ Stream.of(x) → "envuelve x como un elemento"
 
 
         // ==============================
-        // 10. EJECUCIÓN REAL
+        // 10. EJECUCIÓN REAL List<List<Integer>> lists
         // ==============================
         List<Integer> result = lists.stream()
                 .flatMap(x -> x.stream())
                 .collect(Collectors.toList());
 
         System.out.println(result); // [1, 2, 5, 12, 66, 44, 3]
+        String[]  as= "hola".split("");
+        Stream<String> ca =  Stream.of(as);
+        //another topic Stream.of(x) en enteros
+        System.out.println(Stream.of("hola".split("")).collect(Collectors.toList()));
+        System.out.println(Arrays.stream("hola".split("")).collect(Collectors.toList()));
 
-        Stream.of("hola".split(""));
-        Arrays.stream("hola".split(""));
     }
 }

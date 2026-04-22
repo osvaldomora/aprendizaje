@@ -149,7 +149,7 @@ public class FMap {
                 ))
                 .entrySet()
                 .stream()
-                .max(Map.Entry.comparingByValue())
+                .max((e1, e2) -> Long.compare(e1.getValue(), e2.getValue())) //Map.Entry.comparingByValue()
                 .orElseThrow();
 
         System.out.println(max);

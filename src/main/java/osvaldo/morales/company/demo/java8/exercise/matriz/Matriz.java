@@ -10,6 +10,8 @@ public class Matriz {
        // mz[0][0]=1;
         System.out.println("Find the sum of all elements in a matrix");
         int[][] m1 = {{1,2,3},{4,6,7}};
+
+
    int sum=0;
         for(int i=0;i< m1.length;i++){
             for(int j=0;j< m1[i].length;j++){
@@ -25,6 +27,13 @@ sum=0;
         }
         System.out.println(sum);
 
+        System.out.println("with streams");
+        System.out.println("Sum = " + sum);
+        int sumStream =
+                Arrays.stream(m1)              // Stream<int[]>
+                        .flatMapToInt(arr -> Arrays.stream(arr)) // IntStream
+                        .sum();
+        System.out.println(sumStream);
 
         //using collections
 

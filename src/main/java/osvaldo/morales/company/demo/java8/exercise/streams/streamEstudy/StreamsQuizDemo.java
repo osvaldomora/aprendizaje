@@ -1,4 +1,4 @@
-package osvaldo.morales.company.demo.java8.exercise.streams.streamEImp;
+package osvaldo.morales.company.demo.java8.exercise.streams.streamEstudy;
 
 import java.util.*;
 import java.util.stream.*;
@@ -60,7 +60,7 @@ public class StreamsQuizDemo {
         // 4. map(x -> Stream.of(x))  lists = List<List<Integer>>
         // ----------------------------------
         // Tipo: Stream<Stream<List<Integer>>>
-        System.out.println("\n4) Stream<Stream<List<Integer>>>");
+        System.out.println("\n4) 9<Stream<List<Integer>>>");
 
         Stream<Stream<List<Integer>>> s4 = lists.stream()
                 .map(x -> Stream.of(x));
@@ -139,7 +139,7 @@ public class StreamsQuizDemo {
         });
 
         // ----------------------------------
-        // 9. recrear nivel
+        // 9. recrear nivel lists = List<List<Integer>>
         // ----------------------------------
         // Tipo: Stream<List<Integer>>
         Stream<List<Integer>> s9 = lists.stream()
@@ -150,7 +150,7 @@ public class StreamsQuizDemo {
         s9.forEach(x -> System.out.println("Lista: " + x));
 
         // ----------------------------------
-        // 10. envolver en stream otra vez
+        // 10. envolver en stream otra vez List<List<Integer>>
         // ----------------------------------
         // Tipo: Stream<Stream<Integer>>
 

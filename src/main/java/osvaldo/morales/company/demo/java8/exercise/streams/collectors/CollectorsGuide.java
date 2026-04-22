@@ -1,35 +1,10 @@
-package osvaldo.morales.company.demo.java8.exercise;
+package osvaldo.morales.company.demo.java8.exercise.streams.collectors;
+
+
+import osvaldo.morales.company.demo.java8.exercise.collect.Employee;
 
 import java.util.*;
 import java.util.stream.*;
-
-class Employee {
-    int id;
-    String name;
-    int age;
-    double salary;
-
-    public Employee(int id, String name, int age, double salary) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.salary = salary;
-    }
-
-    public int getId() { return id; }
-    public String getName() { return name; }
-    public int getAge() { return age; }
-    public double getSalary() { return salary; }
-
-    public static List<Employee> empleados() {
-        return List.of(
-                new Employee(1, "Ana", 25, 3000),
-                new Employee(2, "Luis", 30, 4000),
-                new Employee(3, "Pedro", 30, 5000),
-                new Employee(4, "Maria", 22, 3500)
-        );
-    }
-}
 
 public class CollectorsGuide {
 
@@ -42,7 +17,7 @@ public class CollectorsGuide {
         // ==========================
         // Collect elements into a List
         List<String> names = employees.stream()
-                .map(e -> e.getName())
+                .map(e -> e.getFirstName())
                 .collect(Collectors.toList());
 
         System.out.println("toList: " + names);
@@ -64,7 +39,7 @@ public class CollectorsGuide {
         // ==========================
         // Join elements into a single String
         String joined = employees.stream()
-                .map(e -> e.getName())
+                .map(e -> e.getFirstName())
                 .collect(Collectors.joining(", "));
 
         System.out.println("joining: " + joined);
@@ -107,7 +82,7 @@ public class CollectorsGuide {
         Map<Integer, String> map = employees.stream()
                 .collect(Collectors.toMap(
                         e -> e.getId(),
-                        e -> e.getName()
+                        e -> e.getFirstName()
                 ));
 
         System.out.println("toMap: " + map);
@@ -140,7 +115,7 @@ public class CollectorsGuide {
         Map<Integer, List<String>> namesByAge = employees.stream()
                 .collect(Collectors.groupingBy(
                         e -> e.getAge(),
-                        Collectors.mapping(e -> e.getName(), Collectors.toList())
+                        Collectors.mapping(e -> e.getFirstName(), Collectors.toList())
                 ));
 
         System.out.println("mapping: " + namesByAge);
@@ -151,7 +126,7 @@ public class CollectorsGuide {
         // ==========================
         // Apply a final transformation after collecting
         List<String> unmodifiableList = employees.stream()
-                .map(e -> e.getName())
+                .map(e -> e.getFirstName())
                 .collect(Collectors.collectingAndThen(
                         Collectors.toList(),
                         list -> Collections.unmodifiableList(list)

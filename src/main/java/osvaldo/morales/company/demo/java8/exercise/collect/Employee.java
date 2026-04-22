@@ -1,23 +1,31 @@
 package osvaldo.morales.company.demo.java8.exercise.collect;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
 public class Employee
 {
    private String firstName;
    private String lastName;
    private double salary; 
    private String department;
+   private  int age;
+
+   private int id;
    
    // constructor 
    public Employee(String firstName, String lastName, 
-      double salary, String department)
+      double salary, String department,int age,int id)
    {
       this.firstName = firstName;
       this.lastName = lastName;
       this.salary = salary;
       this.department = department;
+      this.age = age;
+      this.id=id;
    } 
 
    // set firstName
@@ -77,13 +85,13 @@ public class Employee
     public static List<Employee> empleados() {
 	      // initialize array of Employees
 	      Employee[] employees = {
-	         new Employee("Jason", "Red", 5000, "IT"),
-	         new Employee("Ashley", "Green", 7600, "IT"),
-	         new Employee("Matthew", "Indigo", 3587.5, "Sales"),
-	         new Employee("James", "Indigo", 4700.77, "Marketing"),
-	         new Employee("Luke", "Indigo", 6200, "IT"),
-	         new Employee("Jason", "Blue", 3200, "Sales"),
-	         new Employee("Wendy", "Brown", 4236.4, "Marketing")};
+	         new Employee("Jason", "Red", 5000, "IT",4,4),
+	         new Employee("Ashley", "Green", 7600, "IT",33,31),
+	         new Employee("Matthew", "Indigo", 3587.5, "Sales",12,11),
+	         new Employee("James", "Indigo", 4700.77, "Marketing",12,13),
+	         new Employee("Luke", "Indigo", 6200, "IT",34,5),
+	         new Employee("Jason", "Blue", 3200, "Sales",2,33),
+	         new Employee("Wendy", "Brown", 4236.4, "Marketing",33,2)};
 
 	      // get List view of the Employees
 	      List<Employee> list = Arrays.asList(employees);
@@ -102,18 +110,3 @@ public class Employee
 } // end class Employee
 
 
-
-/**************************************************************************
- * (C) Copyright 1992-2014 by Deitel & Associates, Inc. and               *
- * Pearson Education, Inc. All Rights Reserved.                           *
- *                                                                        *
- * DISCLAIMER: The authors and publisher of this book have used their     *
- * best efforts in preparing the book. These efforts include the          *
- * development, research, and testing of the theories and programs        *
- * to determine their effectiveness. The authors and publisher make       *
- * no warranty of any kind, expressed or implied, with regard to these    *
- * programs or to the documentation contained in these books. The authors *
- * and publisher shall not be liable in any event for incidental or       *
- * consequential damages in connection with, or arising out of, the       *
- * furnishing, performance, or use of these programs.                     *
- *************************************************************************/

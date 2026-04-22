@@ -3,6 +3,8 @@ package osvaldo.morales.company.demo.java8.exercise;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.mapping;
 
@@ -27,6 +29,9 @@ public class CountOccurriences {
 
         System.out.println("Count occurrences of each character in a string.");
         String text = "hello";
+        System.out.println(text.chars().mapToObj(c->(char) c).collect(Collectors.groupingBy(x->x,Collectors.counting())));
+      IntStream inddt=  text.chars();
+      Stream<Character> sd=  text.chars().mapToObj(c->(char) c);
         Map<String, Long> result3 = Arrays.stream(text.split(""))
                 .collect(Collectors.groupingBy(
                         Function.identity(),
